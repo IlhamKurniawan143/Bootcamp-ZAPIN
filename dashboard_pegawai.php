@@ -9,7 +9,7 @@ if (!isset($_SESSION['is_login']) || $_SESSION['role'] != 'pegawai') {
 
 include 'service/database.php';
 
-$pegawai_id = $_SESSION['id'];
+$pegawai_id = $_SESSION['user_id'];
 $sql = "SELECT classes.* FROM classes 
         JOIN class_members ON classes.id = class_members.class_id 
         WHERE class_members.pegawai_id = '$pegawai_id'";
@@ -84,7 +84,7 @@ $db->close();
 
         </main>
     </div>
-    
+
     <script src="scripts.js"></script>
 
 </body>

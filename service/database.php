@@ -2,7 +2,7 @@
     $hostname = 'localhost';
     $username = 'root';
     $password = '';
-    $database_name = 'data_pengguna_zapin';
+    $database_name = 'db_zapin';
 
     $db = mysqli_connect($hostname, $username, $password, $database_name);
 

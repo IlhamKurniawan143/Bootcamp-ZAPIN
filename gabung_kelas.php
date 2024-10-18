@@ -13,11 +13,16 @@ include 'service/database.php';
 $join_message = "";
 
 if (isset($_POST['join_class'])) {
+    // Ambil id user dari session
+    if (!isset($_SESSION['user_id'])) {
+        die("Session ID tidak ditemukan, silakan login kembali.");
+    }
+
     $class_code = $_POST['class_code'];
-    $user_id = $_SESSION['id'];
+    $user_id = $_SESSION['user_id']; // Pastikan session id sudah terisi dengan benar
     $role = $_SESSION['role'];
 
-    // Check if the class exists using the class_code
+    // Memeriksa apakah kelas ada berdasarkan kode kelas
     $sql = "SELECT id FROM classes WHERE class_code = '$class_code'";
     $result = $db->query($sql);
 
@@ -25,24 +30,33 @@ if (isset($_POST['join_class'])) {
         $class_data = $result->fetch_assoc();
         $class_id = $class_data['id'];
 
-        // Check if the user is already a member of the class
-        $check_sql = "SELECT * FROM class_members WHERE id = '$user_id' AND class_id = '$class_id' AND role = '$role'";
-        $check_result = $db->query($check_sql);
+        // Pastikan user_id ada di tabel users
+        $check_user_sql = "SELECT id FROM users WHERE id = '$user_id'";
+        $check_user_result = $db->query($check_user_sql);
 
-        if ($check_result->num_rows == 0) {
-            // Add user to the class_members table
-            $insert_sql = "INSERT INTO class_members (id, class_id, role) VALUES ('$user_id', '$class_id', '$role')";
-            if ($db->query($insert_sql)) {
-                $join_message = "Berhasil bergabung ke kelas!";
+        if ($check_user_result->num_rows > 0) {
+            // Cek apakah user sudah bergabung dalam kelas
+            $check_sql = "SELECT * FROM class_members WHERE pegawai_id = '$user_id' AND class_id = '$class_id' AND role = '$role'";
+            $check_result = $db->query($check_sql);
+
+            if ($check_result->num_rows == 0) {
+                // Menambahkan user ke tabel class_members
+                $insert_sql = "INSERT INTO class_members (pegawai_id, class_id, role) VALUES ('$user_id', '$class_id', '$role')";
+                if ($db->query($insert_sql)) {
+                    $join_message = "Berhasil bergabung ke kelas!";
+                } else {
+                    $join_message = "Gagal bergabung ke kelas. Error: " . $db->error;
+                }
             } else {
-                $join_message = "Gagal bergabung ke kelas.";
+                $join_message = "Anda sudah tergabung di kelas ini!";
             }
         } else {
-            $join_message = "Anda sudah tergabung di kelas ini!";
+            $join_message = "User tidak ditemukan!";
         }
     } else {
         $join_message = "Kode kelas tidak valid!";
     }
+
     $db->close();
 }
 ?>
