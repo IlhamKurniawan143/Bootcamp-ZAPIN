@@ -1,0 +1,101 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #3DCAFD;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+    /* Ensures navbar is above the sidebar */
+}
+
+.burger-menu {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.sidebar {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    /* Initially hide sidebar off-screen */
+    width: 250px;
+    height: 100%;
+    padding-top: 60px;
+    /* So it starts below the navbar */
+    transition: left 0.3s ease;
+    /* Smooth transition when opening/closing */
+    z-index: 500;
+    /* Behind the navbar */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+}
+
+.sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f1f1f1;
+}
+
+.content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s;
+}
+
+/* Open Sidebar */
+.sidebar.open {
+    display: block;
+    left: 0;
+    /* When open, bring sidebar into view */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .sidebar ul li {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 200px;
+    }
+}

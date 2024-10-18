@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    height: 80%;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    /* Posisi relatif untuk tempatkan logo dengan posisi absolut */
+}
+
+.left-side {
+    flex: 1;
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 20%), /* Gradient putih untuk atas logo */
+        linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7) 250%), /* Gradient putih untuk bawah logo */
+        url('img/poto_siswa.png'); /* Gambar utama */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    position: relative;
+    /* Perlu agar logo-logo bisa diatur posisinya di dalamnya */
+}
+
+.right-side {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.logo {
+    position: absolute;
+    z-index: 1;
+    /* Menempatkan logo di atas gambar utama */
+}
+
+.logo-zapin {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    /* Perbesar ukuran logo */
+    height: auto;
+}
+
+.logo-bkp {
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    /* Perbesar ukuran logo */
+    height: auto;
+}
+
+.logo-bangga {
+    bottom: 20px;
+    left: 20px;
+    width: 120px;
+    /* Perbesar ukuran logo */
+    height: auto;
+}
+
+.logo-berakhlak {
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    /* Perbesar ukuran logo */
+    height: auto;
+}
+
+.login-email {
+    width: 100%;
+}
+
+.header-text {
+    font-size: 10rem;
+    font-weight: bold;
+    /* Menebalkan teks */
+    text-align: center;
+    /* Memposisikan teks di tengah */
+    margin-bottom: 20px;
+    /* Memberi jarak bawah agar tampak lebih rapi */
+}
+
+.input-group {
+    margin: 20px 0;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 25%;
+    /* Membuat tombol lebih kecil */
+    padding: 10px;
+    /* Mengurangi padding untuk memperkecil tombol */
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+    /* Menyelaraskan tombol ke tengah secara horizontal */
+    display: block;
+    /* Memastikan properti margin bekerja pada tombol */
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.login-register-text {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-register-text a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.login-register-text a:hover {
+    text-decoration: underline;
+}
